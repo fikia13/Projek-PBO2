@@ -3,7 +3,7 @@ Project PBO 2 E
 
 - Fiki aviantono 192410102002
 - Mochammad Maulana 192410102028
-- Choiril Rizqi 19241010200_
+- Choiril Rizqi 192410102010
 
 Aplikasi GUI pemesanan suatu cafe dan menejemen produk kafe
 - Masuk sebagai pengguna
