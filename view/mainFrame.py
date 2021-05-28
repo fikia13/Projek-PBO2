@@ -1,11 +1,11 @@
 import wx
-import guiInterface
+from view.guiInterface import mainFrame
 from models import products
 from models import database
 
-class classMainFrame(guiInterface.mainFrame):
+class classMainFrame(mainFrame):
     def __init__(self, parent):
-        guiInterface.mainFrame.__init__(self,parent=None)
+        mainFrame.__init__(self,parent=None)
         self.productModel=products.Product()
         self.columns = ['Nama Produk','Harga']
         self.selectedProduct = None

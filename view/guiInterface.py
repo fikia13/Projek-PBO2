@@ -70,8 +70,8 @@ class loginFrame ( wx.Frame ):
 
 		bSizer4.Add( bSizer8, 0, wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
-		self.m_button4 = wx.Button( self.panelLogin, wx.ID_ANY, u"Pesan", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer4.Add( self.m_button4, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+		self.btnPesan = wx.Button( self.panelLogin, wx.ID_ANY, u"Pesan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer4.Add( self.btnPesan, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
 
 
 		bSizer10.Add( bSizer4, 0, wx.ALIGN_CENTER, 0 )
@@ -105,7 +105,7 @@ class loginFrame ( wx.Frame ):
 		self.Centre( wx.BOTH )
 
 		# Connect Events
-		self.m_button4.Bind( wx.EVT_BUTTON, self.btnPesan )
+		self.btnPesan.Bind( wx.EVT_BUTTON, self.onBtnPesan )
 		self.m_button6.Bind( wx.EVT_BUTTON, self.btnLoginAdm )
 
 	def __del__( self ):
@@ -113,7 +113,7 @@ class loginFrame ( wx.Frame ):
 
 
 	# Virtual event handlers, overide them in your derived class
-	def btnPesan( self, event ):
+	def onBtnPesan( self, event ):
 		event.Skip()
 
 	def btnLoginAdm( self, event ):
