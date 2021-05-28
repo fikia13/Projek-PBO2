@@ -134,6 +134,8 @@ class mainFrame ( wx.Frame ):
 		bSizer12 = wx.BoxSizer( wx.VERTICAL )
 
 		self.m_panel7 = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		self.m_panel7.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
+
 		bSizer13 = wx.BoxSizer( wx.VERTICAL )
 
 		bSizer14 = wx.BoxSizer( wx.VERTICAL )
@@ -142,6 +144,7 @@ class mainFrame ( wx.Frame ):
 		self.m_staticText14.Wrap( -1 )
 
 		self.m_staticText14.SetFont( wx.Font( 15, wx.FONTFAMILY_DECORATIVE, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL, False, wx.EmptyString ) )
+		self.m_staticText14.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_WINDOW ) )
 
 		bSizer14.Add( self.m_staticText14, 0, wx.ALIGN_CENTER_HORIZONTAL|wx.ALL, 3 )
 
@@ -205,10 +208,10 @@ class mainFrame ( wx.Frame ):
 
 		bSizer16 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_button9 = wx.Button( self.m_panel7, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button9 = wx.Button( self.m_panel7, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer16.Add( self.m_button9, 0, wx.ALL, 5 )
 
-		self.m_button10 = wx.Button( self.m_panel7, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_button10 = wx.Button( self.m_panel7, wx.ID_ANY, u"Kurang", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer16.Add( self.m_button10, 0, wx.ALL, 5 )
 
 
@@ -274,6 +277,7 @@ class MyDialog2 ( wx.Dialog ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_ACTIVECAPTION ) )
 
 		bSizer16 = wx.BoxSizer( wx.VERTICAL )
 
