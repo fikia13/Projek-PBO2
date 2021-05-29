@@ -387,8 +387,8 @@ class notaFrame ( wx.Dialog ):
 
 		bSizer17.Add( bSizer231, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
-		self.m_button13 = wx.Button( self.m_panel6, wx.ID_ANY, u"OK", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer17.Add( self.m_button13, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
+		self.btnSelesai = wx.Button( self.m_panel6, wx.ID_ANY, u"OK", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer17.Add( self.btnSelesai, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.m_panel6.SetSizer( bSizer17 )
