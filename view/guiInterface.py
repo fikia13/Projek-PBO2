@@ -51,8 +51,8 @@ class loginFrame ( wx.Frame ):
 
 		bSizer7.Add( self.m_staticText6, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_textCtrl4 = wx.TextCtrl( self.panelLogin, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer7.Add( self.m_textCtrl4, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		self.textNama = wx.TextCtrl( self.panelLogin, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer7.Add( self.textNama, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
 
 		bSizer4.Add( bSizer7, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
@@ -64,8 +64,8 @@ class loginFrame ( wx.Frame ):
 
 		bSizer8.Add( self.m_staticText8, 0, wx.ALL, 5 )
 
-		self.m_textCtrl5 = wx.TextCtrl( self.panelLogin, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer8.Add( self.m_textCtrl5, 0, wx.ALL, 5 )
+		self.textMeja = wx.TextCtrl( self.panelLogin, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer8.Add( self.textMeja, 0, wx.ALL, 5 )
 
 
 		bSizer4.Add( bSizer8, 0, wx.ALIGN_CENTER_HORIZONTAL, 0 )
@@ -158,7 +158,7 @@ class mainFrame ( wx.Frame ):
 		fgSizer2.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.listMakanan = wx.ListCtrl( self.m_panel8, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LC_AUTOARRANGE|wx.LC_REPORT )
-		self.listMakanan.SetMinSize( wx.Size( 540,380 ) )
+		self.listMakanan.SetMinSize( wx.Size( 540,270 ) )
 
 		fgSizer2.Add( self.listMakanan, 0, wx.ALL, 5 )
 
@@ -208,40 +208,66 @@ class mainFrame ( wx.Frame ):
 
 		bSizer16 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_button9 = wx.Button( self.m_panel7, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer16.Add( self.m_button9, 0, wx.ALL, 5 )
+		self.btnTambah = wx.Button( self.m_panel7, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnTambah.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
 
-		self.m_button10 = wx.Button( self.m_panel7, wx.ID_ANY, u"Kurang", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer16.Add( self.m_button10, 0, wx.ALL, 5 )
+		bSizer16.Add( self.btnTambah, 0, wx.ALL, 5 )
+
+		self.btnKurang = wx.Button( self.m_panel7, wx.ID_ANY, u"Kurang", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnKurang.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+		bSizer16.Add( self.btnKurang, 0, wx.ALL, 5 )
 
 
 		bSizer13.Add( bSizer16, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 		bSizer15 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_staticText15 = wx.StaticText( self.m_panel7, wx.ID_ANY, u"Jumlah Item", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText15 = wx.StaticText( self.m_panel7, wx.ID_ANY, u"Jumlah Item :", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText15.Wrap( -1 )
+
+		self.m_staticText15.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.m_staticText15.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
 
 		bSizer15.Add( self.m_staticText15, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_textCtrl6 = wx.TextCtrl( self.m_panel7, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_textCtrl6, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		self.textItem = wx.TextCtrl( self.m_panel7, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY )
+		bSizer15.Add( self.textItem, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_staticText16 = wx.StaticText( self.m_panel7, wx.ID_ANY, u"Total Harga", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText16 = wx.StaticText( self.m_panel7, wx.ID_ANY, u"Total Harga :", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText16.Wrap( -1 )
+
+		self.m_staticText16.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.m_staticText16.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
 
 		bSizer15.Add( self.m_staticText16, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_textCtrl7 = wx.TextCtrl( self.m_panel7, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_textCtrl7, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		self.textHarga = wx.TextCtrl( self.m_panel7, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.textHarga, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_button8 = wx.Button( self.m_panel7, wx.ID_ANY, u"Bayar", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.btnCek = wx.Button( self.m_panel7, wx.ID_ANY, u"Check", wx.DefaultPosition, wx.DefaultSize, 0 )
 
-		self.m_button8.SetBitmap( wx.ArtProvider.GetBitmap( wx.ART_GO_FORWARD, wx.ART_OTHER ) )
-		bSizer15.Add( self.m_button8, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		self.btnCek.SetBitmap( wx.ArtProvider.GetBitmap( wx.ART_REPORT_VIEW, wx.ART_OTHER ) )
+		self.btnCek.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.btnCek.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
+
+		bSizer15.Add( self.btnCek, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 0 )
 
 
 		bSizer13.Add( bSizer15, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
+
+		bSizer22 = wx.BoxSizer( wx.VERTICAL )
+
+		self.btnBayar = wx.Button( self.m_panel7, wx.ID_ANY, u"Bayar", wx.DefaultPosition, wx.DefaultSize, 0 )
+
+		self.btnBayar.SetBitmap( wx.ArtProvider.GetBitmap( wx.ART_GO_FORWARD, wx.ART_OTHER ) )
+		self.btnBayar.SetFont( wx.Font( wx.NORMAL_FONT.GetPointSize(), wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+		self.btnBayar.SetForegroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVECAPTIONTEXT ) )
+
+		bSizer22.Add( self.btnBayar, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+
+		bSizer13.Add( bSizer22, 0, wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.m_panel7.SetSizer( bSizer13 )
@@ -257,6 +283,10 @@ class mainFrame ( wx.Frame ):
 
 		# Connect Events
 		self.listMakanan.Bind( wx.EVT_LIST_ITEM_SELECTED, self.handleSelectItem )
+		self.btnTambah.Bind( wx.EVT_BUTTON, self.onBtnTambah )
+		self.btnKurang.Bind( wx.EVT_BUTTON, self.onBtnKurang )
+		self.btnCek.Bind( wx.EVT_BUTTON, self.onBtnCek )
+		self.btnBayar.Bind( wx.EVT_BUTTON, self.onBtnBayar )
 
 	def __del__( self ):
 		pass
@@ -266,12 +296,24 @@ class mainFrame ( wx.Frame ):
 	def handleSelectItem( self, event ):
 		event.Skip()
 
+	def onBtnTambah( self, event ):
+		event.Skip()
+
+	def onBtnKurang( self, event ):
+		event.Skip()
+
+	def onBtnCek( self, event ):
+		event.Skip()
+
+	def onBtnBayar( self, event ):
+		event.Skip()
+
 
 ###########################################################################
-## Class MyDialog2
+## Class notaFrame
 ###########################################################################
 
-class MyDialog2 ( wx.Dialog ):
+class notaFrame ( wx.Dialog ):
 
 	def __init__( self, parent ):
 		wx.Dialog.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.DefaultSize, style = wx.DEFAULT_DIALOG_STYLE )
@@ -284,25 +326,69 @@ class MyDialog2 ( wx.Dialog ):
 		self.m_panel6 = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		bSizer17 = wx.BoxSizer( wx.VERTICAL )
 
-		self.m_staticText9 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"MyLabel", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText9 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Nota Pembelian", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText9.Wrap( -1 )
 
-		bSizer17.Add( self.m_staticText9, 0, wx.ALL, 5 )
+		self.m_staticText9.SetFont( wx.Font( 15, wx.FONTFAMILY_ROMAN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD, False, wx.EmptyString ) )
+
+		bSizer17.Add( self.m_staticText9, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+		bSizer23 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText15 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Nama Pembeli", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText15.Wrap( -1 )
+
+		bSizer23.Add( self.m_staticText15, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.textPembeli = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY )
+		bSizer23.Add( self.textPembeli, 0, wx.ALL, 5 )
+
+		self.m_staticText16 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"No. Meja", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText16.Wrap( -1 )
+
+		bSizer23.Add( self.m_staticText16, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.textNoMeja = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY )
+		bSizer23.Add( self.textNoMeja, 0, wx.ALL, 5 )
+
+
+		bSizer17.Add( bSizer23, 0, wx.ALL|wx.EXPAND, 0 )
 
 		fgSizer5 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer5.SetFlexibleDirection( wx.BOTH )
 		fgSizer5.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_listCtrl3 = wx.ListCtrl( self.m_panel6, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LC_ICON )
-		self.m_listCtrl3.SetMinSize( wx.Size( 540,380 ) )
+		self.textNota = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_MULTILINE )
+		self.textNota.SetMinSize( wx.Size( 540,270 ) )
 
-		fgSizer5.Add( self.m_listCtrl3, 0, wx.ALL, 5 )
+		fgSizer5.Add( self.textNota, 0, wx.ALL, 5 )
 
 
 		bSizer17.Add( fgSizer5, 1, wx.EXPAND, 5 )
 
-		self.m_button13 = wx.Button( self.m_panel6, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer17.Add( self.m_button13, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+		bSizer231 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText21 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Jumlah Item", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText21.Wrap( -1 )
+
+		bSizer231.Add( self.m_staticText21, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.textItem = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY )
+		bSizer231.Add( self.textItem, 0, wx.ALL, 5 )
+
+		self.m_staticText22 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Jumlah Harga", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText22.Wrap( -1 )
+
+		bSizer231.Add( self.m_staticText22, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.textHarga = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_READONLY )
+		bSizer231.Add( self.textHarga, 0, wx.ALL, 5 )
+
+
+		bSizer17.Add( bSizer231, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
+
+		self.m_button13 = wx.Button( self.m_panel6, wx.ID_ANY, u"OK", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer17.Add( self.m_button13, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.m_panel6.SetSizer( bSizer17 )
@@ -357,11 +443,6 @@ class adminFrame ( wx.Frame ):
 		fgSizer4 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer4.SetFlexibleDirection( wx.BOTH )
 		fgSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		self.m_listCtrl2 = wx.ListCtrl( self.m_panel5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LC_ICON )
-		self.m_listCtrl2.SetMinSize( wx.Size( 540,380 ) )
-
-		fgSizer4.Add( self.m_listCtrl2, 0, wx.ALL, 5 )
 
 
 		bSizer14.Add( fgSizer4, 0, wx.ALL|wx.EXPAND, 0 )
