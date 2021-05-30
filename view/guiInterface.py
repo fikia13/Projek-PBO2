@@ -9,7 +9,6 @@
 
 import wx
 import wx.xrc
-import wx.grid
 
 ###########################################################################
 ## Class loginFrame
@@ -166,43 +165,7 @@ class mainFrame ( wx.Frame ):
 		self.m_panel8.SetSizer( fgSizer2 )
 		self.m_panel8.Layout()
 		fgSizer2.Fit( self.m_panel8 )
-		self.m_notebook1.AddPage( self.m_panel8, u"Daftar Makanan", True )
-		self.m_panel9 = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
-		fgSizer3 = wx.FlexGridSizer( 0, 2, 0, 0 )
-		fgSizer3.SetFlexibleDirection( wx.BOTH )
-		fgSizer3.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
-
-		self.tableMinuman = wx.grid.Grid( self.m_panel9, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, 0 )
-
-		# Grid
-		self.tableMinuman.CreateGrid( 5, 5 )
-		self.tableMinuman.EnableEditing( True )
-		self.tableMinuman.EnableGridLines( True )
-		self.tableMinuman.EnableDragGridSize( False )
-		self.tableMinuman.SetMargins( 0, 0 )
-
-		# Columns
-		self.tableMinuman.EnableDragColMove( False )
-		self.tableMinuman.EnableDragColSize( True )
-		self.tableMinuman.SetColLabelSize( 30 )
-		self.tableMinuman.SetColLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Rows
-		self.tableMinuman.EnableDragRowSize( True )
-		self.tableMinuman.SetRowLabelSize( 80 )
-		self.tableMinuman.SetRowLabelAlignment( wx.ALIGN_CENTER, wx.ALIGN_CENTER )
-
-		# Label Appearance
-
-		# Cell Defaults
-		self.tableMinuman.SetDefaultCellAlignment( wx.ALIGN_LEFT, wx.ALIGN_TOP )
-		fgSizer3.Add( self.tableMinuman, 0, wx.ALL, 5 )
-
-
-		self.m_panel9.SetSizer( fgSizer3 )
-		self.m_panel9.Layout()
-		fgSizer3.Fit( self.m_panel9 )
-		self.m_notebook1.AddPage( self.m_panel9, u"Daftar Minuman", False )
+		self.m_notebook1.AddPage( self.m_panel8, u"Daftar Produk", False )
 
 		bSizer13.Add( self.m_notebook1, 1, wx.EXPAND |wx.ALL, 0 )
 
@@ -403,8 +366,16 @@ class notaFrame ( wx.Dialog ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.btnSelesai.Bind( wx.EVT_BUTTON, self.onBtnSelesai )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def onBtnSelesai( self, event ):
+		event.Skip()
 
 
 ###########################################################################
