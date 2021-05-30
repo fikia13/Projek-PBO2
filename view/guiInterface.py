@@ -85,8 +85,8 @@ class loginFrame ( wx.Frame ):
 
 		bSizer9.Add( self.m_staticText10, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_button6 = wx.Button( self.panelLogin, wx.ID_ANY, u"Masuk", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer9.Add( self.m_button6, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+		self.btnMasuk = wx.Button( self.panelLogin, wx.ID_ANY, u"Masuk", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer9.Add( self.btnMasuk, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
 
 		bSizer10.Add( bSizer9, 0, wx.ALL, 0 )
@@ -105,7 +105,7 @@ class loginFrame ( wx.Frame ):
 
 		# Connect Events
 		self.btnPesan.Bind( wx.EVT_BUTTON, self.onBtnPesan )
-		self.m_button6.Bind( wx.EVT_BUTTON, self.btnLoginAdm )
+		self.btnMasuk.Bind( wx.EVT_BUTTON, self.onBtnMasuk )
 
 	def __del__( self ):
 		pass
@@ -115,7 +115,7 @@ class loginFrame ( wx.Frame ):
 	def onBtnPesan( self, event ):
 		event.Skip()
 
-	def btnLoginAdm( self, event ):
+	def onBtnMasuk( self, event ):
 		event.Skip()
 
 
@@ -385,9 +385,10 @@ class notaFrame ( wx.Dialog ):
 class adminFrame ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 573,370 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVEBORDER ) )
 
 		bSizer11 = wx.BoxSizer( wx.VERTICAL )
 
@@ -396,33 +397,35 @@ class adminFrame ( wx.Frame ):
 
 		bSizer15 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_button8 = wx.Button( self.m_panel5, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_button8, 0, wx.ALL, 5 )
+		self.btnTambah1 = wx.Button( self.m_panel5, wx.ID_ANY, u"Tambah", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.btnTambah1, 0, wx.ALL, 5 )
 
-		self.m_button9 = wx.Button( self.m_panel5, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_button9, 0, wx.ALL, 5 )
+		self.btnEdit = wx.Button( self.m_panel5, wx.ID_ANY, u"Edit", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.btnEdit, 0, wx.ALL, 5 )
 
-		self.m_button10 = wx.Button( self.m_panel5, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_button10, 0, wx.ALL, 5 )
-
-		self.m_button11 = wx.Button( self.m_panel5, wx.ID_ANY, u"MyButton", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer15.Add( self.m_button11, 0, wx.ALL, 5 )
+		self.btnHapus = wx.Button( self.m_panel5, wx.ID_ANY, u"Hapus", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.btnHapus, 0, wx.ALL, 5 )
 
 
-		bSizer14.Add( bSizer15, 0, wx.ALL|wx.EXPAND, 0 )
+		bSizer14.Add( bSizer15, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 		fgSizer4 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer4.SetFlexibleDirection( wx.BOTH )
 		fgSizer4.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
+		self.listData = wx.ListCtrl( self.m_panel5, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.LC_AUTOARRANGE|wx.LC_REPORT )
+		self.listData.SetMinSize( wx.Size( 540,270 ) )
 
-		bSizer14.Add( fgSizer4, 0, wx.ALL|wx.EXPAND, 0 )
+		fgSizer4.Add( self.listData, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL|wx.ALIGN_CENTER_VERTICAL, 0 )
+
+
+		bSizer14.Add( fgSizer4, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.m_panel5.SetSizer( bSizer14 )
 		self.m_panel5.Layout()
 		bSizer14.Fit( self.m_panel5 )
-		bSizer11.Add( self.m_panel5, 0, wx.EXPAND |wx.ALL, 0 )
+		bSizer11.Add( self.m_panel5, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.SetSizer( bSizer11 )
@@ -430,7 +433,105 @@ class adminFrame ( wx.Frame ):
 
 		self.Centre( wx.BOTH )
 
+		# Connect Events
+		self.btnTambah1.Bind( wx.EVT_BUTTON, self.onBtnTambah1 )
+		self.btnEdit.Bind( wx.EVT_BUTTON, self.onBtnEdit )
+		self.btnHapus.Bind( wx.EVT_BUTTON, self.onBtnHapus )
+
 	def __del__( self ):
 		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def onBtnTambah1( self, event ):
+		event.Skip()
+
+	def onBtnEdit( self, event ):
+		event.Skip()
+
+	def onBtnHapus( self, event ):
+		event.Skip()
+
+
+###########################################################################
+## Class createFrame
+###########################################################################
+
+class createFrame ( wx.Frame ):
+
+	def __init__( self, parent ):
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 500,300 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+
+		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
+
+		bSizer20 = wx.BoxSizer( wx.VERTICAL )
+
+		self.m_panel6 = wx.Panel( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
+		bSizer21 = wx.BoxSizer( wx.VERTICAL )
+
+		bSizer22 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText14 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Nama Produk", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText14.Wrap( -1 )
+
+		bSizer22.Add( self.m_staticText14, 0, wx.ALL, 5 )
+
+		self.m_textCtrl10 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer22.Add( self.m_textCtrl10, 0, wx.ALL, 5 )
+
+
+		bSizer21.Add( bSizer22, 0, wx.EXPAND, 0 )
+
+		bSizer23 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText15 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Harga Produk", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText15.Wrap( -1 )
+
+		bSizer23.Add( self.m_staticText15, 0, wx.ALL, 5 )
+
+		self.m_textCtrl11 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer23.Add( self.m_textCtrl11, 0, wx.ALL, 5 )
+
+
+		bSizer21.Add( bSizer23, 0, wx.EXPAND, 0 )
+
+		bSizer25 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.m_staticText16 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Category", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText16.Wrap( -1 )
+
+		bSizer25.Add( self.m_staticText16, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
+
+		self.m_textCtrl12 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer25.Add( self.m_textCtrl12, 0, wx.ALL, 5 )
+
+
+		bSizer21.Add( bSizer25, 0, 0, 5 )
+
+		self.btnSave = wx.Button( self.m_panel6, wx.ID_ANY, u"Save", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer21.Add( self.btnSave, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+
+
+		self.m_panel6.SetSizer( bSizer21 )
+		self.m_panel6.Layout()
+		bSizer21.Fit( self.m_panel6 )
+		bSizer20.Add( self.m_panel6, 1, wx.EXPAND |wx.ALL, 5 )
+
+
+		self.SetSizer( bSizer20 )
+		self.Layout()
+
+		self.Centre( wx.BOTH )
+
+		# Connect Events
+		self.btnSave.Bind( wx.EVT_BUTTON, self.onBtnSave )
+
+	def __del__( self ):
+		pass
+
+
+	# Virtual event handlers, overide them in your derived class
+	def onBtnSave( self, event ):
+		event.Skip()
 
 

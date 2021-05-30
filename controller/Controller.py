@@ -1,7 +1,9 @@
-from wx.core import CENTRE, EVT_PAINT, NotifyEvent, OK
+from wx.core import CENTRE, EVT_PAINT, Event, NotifyEvent, OK
 from view.loginFrame import *
 from view.mainFrame import *
 from view.notaFrame import *
+from view.admFrame import * 
+from view.createFrame import *
 
 class Controller():
     def __init__(self):
@@ -14,6 +16,7 @@ class Controller():
         #class login
         self.loginView = classLoginFrame(parent=None)
         self.loginView.btnPesan.Bind(wx.EVT_BUTTON, self.onBtnPesan)
+        self.loginView.btnMasuk.Bind(wx.EVT_BUTTON, self.onBtnMasuk)
 
         #class mainFrame
         self.mainView = classMainFrame(parent=None)
@@ -29,6 +32,10 @@ class Controller():
         #class notaFrame
         self.notaView = clasNotaFrame(parent=None)
         self.notaView.btnSelesai.Bind(wx.EVT_BUTTON, self.onBtnSelesai)
+
+        #class admFrame
+        self.admView = classAdmFrame(parent=None)
+        
 
 
     #login
@@ -52,6 +59,10 @@ class Controller():
     def setFormKosong(self):
         self.loginView.textMeja.SetValue("")
         self.loginView.textNama.SetValue("")
+
+    def onBtnMasuk(self, event):
+        self.admView.Show()
+
     #main
     def onBtnTambah( self, event ):
         if self.mainView.selectedProduct == None : return
@@ -117,6 +128,8 @@ class Controller():
         self.notaView.Hide()
         self.loginView.Show(show=True)
         self.setFormKosong()
+
+    #admin frame
 
     #================
     def main(self):
