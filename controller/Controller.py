@@ -7,11 +7,14 @@ from view.createFrame import *
 
 class Controller():
     def __init__(self):
+        self.productModel=products.Product()
         self.jumlahItem = 0
         self.jumlahHarga = 0
         self.nama = ""
         self.meja = ""
         self.list = ""
+        self.id = None
+        self.selectedProduct = None
 
         #class login
         self.loginView = classLoginFrame(parent=None)
@@ -35,8 +38,17 @@ class Controller():
 
         #class admFrame
         self.admView = classAdmFrame(parent=None)
-        
+        self.admView.btnTambah1.Bind(wx.EVT_BUTTON, self.onBtnTambah1)
+        self.admView.btnEdit.Bind(wx.EVT_BUTTON, self.onBtnEdit)
+        self.admView.listData.Bind(wx.EVT_LIST_ITEM_SELECTED, self.handleSelectItem1)
+        self.admView.btnRefresh.Bind(wx.EVT_BUTTON, self.onBtnRefresh)
+        self.admView.btnHapus.Bind(wx.EVT_BUTTON, self.onBtnHapus)
+        self.admView.btnKeluar.Bind(wx.EVT_BUTTON, self.onBtnKeluar)
 
+        #create frame
+        self.createView = classCreateFrame(parent=None)
+        self.createView.btnBatal.Bind(wx.EVT_BUTTON, self.onBtnBatal)
+        self.createView.btnSimpan.Bind(wx.EVT_BUTTON, self.onBtnSimpan)
 
     #login
     def onBtnPesan(self, event):
@@ -130,6 +142,70 @@ class Controller():
         self.setFormKosong()
 
     #admin frame
+    def onBtnTambah1(self, event):
+        self.createView.Show()
+    
+    def onBtnEdit(self, event):
+        if self.selectedProduct == None: return
+
+        prod = self.productModel.find(self.selectedProduct, column='productID')
+        self.createView.setProductName(prod[1])
+        self.createView.setUnitPrice(prod[2])
+        self.createView.setCategory(prod[3])
+        self.id = self.selectedProduct
+        self.createView.Show()
+    
+    def onBtnHapus(self, event):
+        if self.selectedProduct == None: return
+        r = wx.MessageDialog(None, 'This data will be deleted permanently.', 'Are you sure', style=wx.ICON_WARNING | wx.YES_NO | wx.NO_DEFAULT).ShowModal()
+        
+        if r == wx.ID_YES:
+            self.productModel.delete(value=self.selectedProduct, column='productID')
+            wx.MessageDialog(None, 'Author has been deleted.', 'Delete Success', style=wx.OK | wx.ICON_INFORMATION).ShowModal()
+    
+    def handleSelectItem1(self, event):
+        selectedId = event.GetItem().GetText()
+        if not selectedId: return
+        self.selectedProduct = selectedId
+        print(selectedId)
+
+    def onBtnRefresh(self, event):
+        self.admView.listData.DeleteAllItems()
+        authors = self.productModel.get(columns="*",orderByColumn='productID', orderByDirection='DESC')
+        for rowIndex, row in enumerate(authors):
+            self.admView.listData.InsertItem(rowIndex, row[0])
+            for columnIndex, col in enumerate(self.admView.columns):
+                self.admView.listData.SetItem(rowIndex, columnIndex, str(row[columnIndex]))
+
+    #creteFrame
+
+
+    def onBtnBatal(self, event):
+        self.createView.Hide()
+    
+    def onBtnSimpan(self, event):
+        product_name = self.createView.textProductName.GetValue()
+        unit_price = self.createView.textUnitPrice.GetValue()
+        category = self.createView.textCategory.GetValue()
+        try:
+            if self.id == None:
+                result = self.productModel.insert(values=[product_name, int(unit_price), int(category)], columns=['productName', 'unitPrice', 'categoryID'])
+            else:
+                result = self.productModel.update(colValues={'productName': product_name, 'unitPrice': unit_price, 'categoryID': category}, identifierValue=self.id, identifierColumn='productID')
+
+        except Exception as err:
+            wx.MessageDialog(None, str(err), 'An error occured.', style=wx.OK | wx.ICON_ERROR).ShowModal()
+
+        finally:
+            if self.id == None:
+                wx.MessageDialog(None, 'New author successfully added.', 'Success', style=wx.OK | wx.ICON_INFORMATION).ShowModal()
+                
+            else:
+                wx.MessageDialog(None, 'Author data has been updated.', 'Update Success', style=wx.OK | wx.ICON_INFORMATION).ShowModal()
+                
+
+    def onBtnKeluar(self, event):
+        self.admView.Hide()
 
     #================
     def main(self):

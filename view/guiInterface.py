@@ -385,7 +385,7 @@ class notaFrame ( wx.Dialog ):
 class adminFrame ( wx.Frame ):
 
 	def __init__( self, parent ):
-		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = wx.EmptyString, pos = wx.DefaultPosition, size = wx.Size( 573,370 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
+		wx.Frame.__init__ ( self, parent, id = wx.ID_ANY, title = u"Admin ", pos = wx.DefaultPosition, size = wx.Size( 573,370 ), style = wx.DEFAULT_FRAME_STYLE|wx.TAB_TRAVERSAL )
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 		self.SetBackgroundColour( wx.SystemSettings.GetColour( wx.SYS_COLOUR_INACTIVEBORDER ) )
@@ -405,6 +405,12 @@ class adminFrame ( wx.Frame ):
 
 		self.btnHapus = wx.Button( self.m_panel5, wx.ID_ANY, u"Hapus", wx.DefaultPosition, wx.DefaultSize, 0 )
 		bSizer15.Add( self.btnHapus, 0, wx.ALL, 5 )
+
+		self.btnRefresh = wx.Button( self.m_panel5, wx.ID_ANY, u"Refresh", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.btnRefresh, 0, wx.ALL, 5 )
+
+		self.btnKeluar = wx.Button( self.m_panel5, wx.ID_ANY, u"Keluar", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer15.Add( self.btnKeluar, 0, wx.ALL, 5 )
 
 
 		bSizer14.Add( bSizer15, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
@@ -437,6 +443,9 @@ class adminFrame ( wx.Frame ):
 		self.btnTambah1.Bind( wx.EVT_BUTTON, self.onBtnTambah1 )
 		self.btnEdit.Bind( wx.EVT_BUTTON, self.onBtnEdit )
 		self.btnHapus.Bind( wx.EVT_BUTTON, self.onBtnHapus )
+		self.btnRefresh.Bind( wx.EVT_BUTTON, self.onBtnRefresh )
+		self.btnKeluar.Bind( wx.EVT_BUTTON, self.onBtnKeluar )
+		self.listData.Bind( wx.EVT_LIST_ITEM_SELECTED, self.handleSelectItem1 )
 
 	def __del__( self ):
 		pass
@@ -450,6 +459,15 @@ class adminFrame ( wx.Frame ):
 		event.Skip()
 
 	def onBtnHapus( self, event ):
+		event.Skip()
+
+	def onBtnRefresh( self, event ):
+		event.Skip()
+
+	def onBtnKeluar( self, event ):
+		event.Skip()
+
+	def handleSelectItem1( self, event ):
 		event.Skip()
 
 
@@ -476,8 +494,8 @@ class createFrame ( wx.Frame ):
 
 		bSizer22.Add( self.m_staticText14, 0, wx.ALL, 5 )
 
-		self.m_textCtrl10 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer22.Add( self.m_textCtrl10, 0, wx.ALL, 5 )
+		self.textProductName = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer22.Add( self.textProductName, 0, wx.ALL, 5 )
 
 
 		bSizer21.Add( bSizer22, 0, wx.EXPAND, 0 )
@@ -489,27 +507,35 @@ class createFrame ( wx.Frame ):
 
 		bSizer23.Add( self.m_staticText15, 0, wx.ALL, 5 )
 
-		self.m_textCtrl11 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer23.Add( self.m_textCtrl11, 0, wx.ALL, 5 )
+		self.textUnitPrice = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer23.Add( self.textUnitPrice, 0, wx.ALL, 5 )
 
 
 		bSizer21.Add( bSizer23, 0, wx.EXPAND, 0 )
 
 		bSizer25 = wx.BoxSizer( wx.HORIZONTAL )
 
-		self.m_staticText16 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Category", wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText16 = wx.StaticText( self.m_panel6, wx.ID_ANY, u"Category        ", wx.DefaultPosition, wx.DefaultSize, 0 )
 		self.m_staticText16.Wrap( -1 )
 
 		bSizer25.Add( self.m_staticText16, 0, wx.ALL|wx.ALIGN_CENTER_VERTICAL, 5 )
 
-		self.m_textCtrl12 = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer25.Add( self.m_textCtrl12, 0, wx.ALL, 5 )
+		self.textCategory = wx.TextCtrl( self.m_panel6, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer25.Add( self.textCategory, 0, wx.ALL, 5 )
 
 
 		bSizer21.Add( bSizer25, 0, 0, 5 )
 
-		self.btnSave = wx.Button( self.m_panel6, wx.ID_ANY, u"Save", wx.DefaultPosition, wx.DefaultSize, 0 )
-		bSizer21.Add( self.btnSave, 0, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 5 )
+		bSizer26 = wx.BoxSizer( wx.HORIZONTAL )
+
+		self.btnSimpan = wx.Button( self.m_panel6, wx.ID_ANY, u"Simpan", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer26.Add( self.btnSimpan, 0, wx.ALL|wx.ALIGN_BOTTOM, 5 )
+
+		self.btnBatal = wx.Button( self.m_panel6, wx.ID_ANY, u"Kembali", wx.DefaultPosition, wx.DefaultSize, 0 )
+		bSizer26.Add( self.btnBatal, 0, wx.ALL|wx.ALIGN_BOTTOM, 5 )
+
+
+		bSizer21.Add( bSizer26, 1, wx.ALL|wx.ALIGN_CENTER_HORIZONTAL, 0 )
 
 
 		self.m_panel6.SetSizer( bSizer21 )
@@ -524,14 +550,18 @@ class createFrame ( wx.Frame ):
 		self.Centre( wx.BOTH )
 
 		# Connect Events
-		self.btnSave.Bind( wx.EVT_BUTTON, self.onBtnSave )
+		self.btnSimpan.Bind( wx.EVT_BUTTON, self.onBtnSimpan )
+		self.btnBatal.Bind( wx.EVT_BUTTON, self.onBtnBatal )
 
 	def __del__( self ):
 		pass
 
 
 	# Virtual event handlers, overide them in your derived class
-	def onBtnSave( self, event ):
+	def onBtnSimpan( self, event ):
+		event.Skip()
+
+	def onBtnBatal( self, event ):
 		event.Skip()
 
 

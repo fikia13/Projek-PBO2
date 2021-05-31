@@ -17,12 +17,11 @@ class classMainFrame(mainFrame):
             self.listMakanan.InsertColumn(index, col)
 
     def initData(self):
-            authors = self.productModel.get(columns="productName,productName, unitPrice",orderByColumn='productID', orderByDirection='DESC', limit=10)
+            authors = self.productModel.get(columns="productName,productName, unitPrice",orderByColumn='productID', orderByDirection='DESC', limit=100)
             n = 1
             for rowIndex, row in enumerate(authors):
                 self.listMakanan.InsertItem(rowIndex, row[0])
                 for columnIndex, col in enumerate(self.columns):
-                    print(rowIndex,columnIndex)
                     if columnIndex == 0:
                         self.listMakanan.SetItem(rowIndex, columnIndex, str(n))
                     elif columnIndex == 3:
